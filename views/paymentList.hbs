@@ -1,0 +1,22 @@
+<div class="mobile-table">
+	<table class="iksweb" id="historyTable">
+		<thead>
+			<tr>
+				<th>Пользователь</th>
+				<th>Сумма</th>
+				<th>Дата</th>
+				<th>Время</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each paymentList}}
+			<tr>
+				<td><a href='/userSessions?userPhone={{this.userPhone}}'>{{this.userPhone}}</a></td>
+				<td>{{this.Amount}}</td>
+				<td>{{this.date}}</td>
+				<td>{{this.time}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,22 @@
+<div class="mobile-table">
+	<table class="iksweb" id="historyTable">
+		<thead>
+			<tr>
+				<th>Дата</th>
+				<th>Сумма</th>
+				<th>квт*ч</th>
+				<th>Станция</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each userSessions}}
+			<tr>
+				<td>{{this.date}}</td>
+				<td>{{this.totalCost}}</td>
+				<td>{{this.consumedPower}}</td>
+				<td>{{this.stationNum}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</div>

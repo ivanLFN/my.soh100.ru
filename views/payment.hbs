@@ -1,0 +1,46 @@
+<div style="margin-left: 30px;">
+    <div class="commonText">Выберите сумму, руб.:</div>
+    <br>
+    <form>
+        {{#each paymentValues}}
+        <input type="radio" id=RB_{{@index}} name="values" value={{this}} {{#unless @index }} checked {{/unless}}>
+          <label class="commonText" for=RB_{{@index}}>{{this}}</label><br>
+        {{/each}}
+    </form>
+    <br>
+
+    <p hidden id="paymentValuesArrayLength">{{ paymentValues.length }}</p>
+    <button class="commonButton" onclick="pay()" style="margin-left: 10px; margin-top: 20px;">Оплатить</button>
+</div>
+
+
+<script>
+    function pay() {
+
+        let radios = document.getElementsByTagName('input');
+        let params = {};
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].type === 'radio' && radios[i].checked) {
+                params = { summ: radios[i].value};
+            }
+        }
+        console.log(params)
+
+        $.ajax({
+            url: '/pay',
+            type: 'POST',
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            data: JSON.stringify(params),
+            success: (data) => {
+
+                if (data.success === true) {
+                    window.location.href = data.url;
+                }
+                else {
+                    alert("Ошибка сервиса");
+                }
+            }
+        })
+    }
+</script>

@@ -1,0 +1,154 @@
+<div class="timersDiv" id="timersDiv">
+
+    <table id="billingTable" class="timerTable">
+        <thead>
+            <tr class="timeTable_tr">
+                <th>Номер станции</th>
+                <th>Стоимость кВт*ч, руб.</th>
+                <th>Комиссия, %</th>
+                <th>Адрес</th>
+                <th>Номер сим-карты</th>
+                <th>В сети</th>
+                <th>Занята</th>
+                <th>Обновить</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+<div style="margin-left: 30px; margin-top: 50px; margin-bottom: 35px">
+</div>
+
+</div>
+
+
+<script>
+
+    $('document').ready(function () {
+
+        $.ajax({
+            url: `/stations`,
+            type: 'GET',
+            dataType: 'json',
+            success: (data) => {
+
+                for (let i = 0; i < data.length; i++) {
+
+                    let stationNum = data[i].stationNum;
+                    let price = data[i].price;
+                    let comission = data[i].comission;
+                    let address = data[i].address;
+
+                    let simCardPhone = data[i].simCardPhone;
+
+                    let onLink;
+                    let estabState;
+
+
+                    if (data[i].onLink) {
+                        onLink = '<p style="color:lime;">Да</p>';
+                    }
+                    else {
+                        onLink = '<p style="color:red;">Нет</p>';
+                    }
+
+                    if (data[i].estabState) {
+                        estabState = '<p style="color:lime;">Да</p>';
+                    }
+                    else {
+                        estabState = '<p style="color:red;">Нет</p>';
+                    }
+
+                    let row = `<tr>
+				<td><a href='/stationBilling?num=${stationNum}'>${stationNum}</a></td>
+				<td><input type="text" id="price_${stationNum}" value="${price}" size = "4"}></td>
+				<td><input type="text" id="comission_${stationNum}" value="${comission}" size = "4"}></td>
+                <td><p>${address}</p></td>
+                <td><p>${simCardPhone}</p></td>
+                <td>${onLink}</td>
+                <td>${estabState}</td>
+				<td><button class="commonButton" onclick="update(${stationNum})"></td></tr>`
+
+                    $('#billingTable').append(row);
+                }
+            }
+        })
+    })
+
+
+
+    function update(stationNum) {
+
+        let priceValue = document.getElementById(`price_${stationNum}`).value;
+        let comissionValue = document.getElementById(`comission_${stationNum}`).value;
+
+        let priceStr = priceValue.split(/[,.]/);
+        let rubStr = priceStr[0];
+        let kopStr = priceStr[1];
+
+        if (kopStr === undefined) kopStr = '00';
+
+
+        let kop;
+        if (kopStr.length === 2) {
+            kop = parseInt(kopStr);
+        }
+        else {
+            kop = parseInt(kopStr) * 10;
+        }
+
+
+        if (!Number.isInteger(kop)) { alert("Неправильная цена"); return }
+        if (kop > 100) { alert("Неправильная цена"); return }
+
+        let rub = parseInt(rubStr);
+        if (!Number.isInteger(rub)) { alert("Неправильная цена"); return }
+
+        let checkedPrice = rub * 100 + kop;
+
+
+        let comissionStr = comissionValue.split(/[,.]/);
+        let wholeStr = comissionStr[0];
+        let fracStr = comissionStr[1];
+
+        if (fracStr === undefined) fracStr = '00';
+        let frac;
+        if (fracStr.length === 2) {
+            frac = parseInt(fracStr);
+        }
+        else {
+            frac = parseInt(fracStr) * 10;
+        }
+
+
+        if (!Number.isInteger(frac)) { alert("Неправильный процент"); return }
+        if (frac > 100) { alert("Неправильный процент"); return }
+
+        let whore = parseInt(wholeStr);
+        if (!Number.isInteger(whore)) { alert("Неправильный процент"); return }
+
+        let checkedComission = (whore * 100 + frac) / 100;
+        console.log(checkedComission)
+
+        let params = {};
+
+        params.price = checkedPrice;
+        params.comission = checkedComission;
+        params.stationNum = stationNum;
+
+        $.ajax({
+            url: `/updateBillingParams`,
+            contentType: "application/json; charset=utf-8",
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(params),
+            success: (sessions) => {
+
+                location.reload();
+            }
+        })
+
+    }
+
+</script>

@@ -1,0 +1,46 @@
+<form class="form">
+    <div class="container">
+        <h1 class="commonTextTitle">Авторизация</h1>
+        <hr>
+
+        <label for="phone" class="commonText"><b>Номер телефона</b></label>
+        <input type="tel" placeholder="+7(___)___-____" name="phone" id="phone" required>
+
+        <label for="password" class="commonText"><b>Пароль</b></label>
+        <input type="password" placeholder="" id="password" name="password" required>
+        <p class="restorePass"><a href="/resetPassword">Восстановить пароль</a></p>
+        <button class="commonButton" type="button" onclick="login()">Войти в аккаунт</button>
+        <hr>
+        <p class="restorePass"><a href="/registration">Создать аккаунт</a></p>
+    </div>
+</form>
+
+<script>
+    function login() {
+        let phone = (document.getElementById('phone').value).replace(/[-+()\s]/g, '');
+        const password = document.getElementById('password').value;
+
+        if (phone[0] == '8') phone = phone.replace('8', '7');
+
+        const req = { phone: phone, password: password };
+
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(req),
+            headers: { 'Content-Type': 'application/json' }
+        }
+        fetch('login', options)
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    if(data.url)
+                        document.location.href = data.url;
+                    else
+                        document.location.href = "/";
+                }
+                else {
+                    alert(data.msg);
+                }
+            })
+    }
+</script>

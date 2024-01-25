@@ -1,0 +1,86 @@
+<table id="outerTable" align="center">
+
+  {{#each chargerStations}}
+
+  <tr align="center">
+    <td align="center">
+
+      <table class="innerTable">
+        <tr>
+          <td width="40%" height="80%">
+
+            {{#if this.resetState}}
+            <img class="stationImage" id = "img{{this.stationId}}" src="images/renderRed2.png" />
+            {{else}}
+
+            {{#if this.actualState}}
+            <img class="stationImage" id = "img{{this.stationId}}" src="images/renderGreen2.png" />
+            {{else}}
+            <img class="stationImage" id = "img{{this.stationId}}" src="images/renderBlue2.png" />
+            {{/if}}
+
+            {{/if}}
+          </td>
+
+          <td align="center" class="tdClass">
+
+            <table class="paramsTable" >
+              <tr>
+                <td <div class="switchDiv">
+                  <label class="switch">
+                    {{#if this.establishedState}}
+                    <input type="checkbox" class="switch" id="switch{{this.stationId}}" checked
+                      onclick="switchEvent('{{this.stationId}}');">
+                    {{else}}
+                    <input type="checkbox" class="switch" id="switch{{this.stationId}}"
+                      onclick="switchEvent('{{this.stationId}}')" ;>
+                    {{/if}}
+                    <span class="slider round"></span>
+                  </label>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="paramsDiv">
+                    <p id="volText{{this.stationId}}">Напряжение: {{this.voltage}} В</p>
+                    <p id="powText{{this.stationId}}">Потребляемая мощность: {{this.power}} кВт</p>
+                  </div>
+                </td>
+              </tr>
+            </table>
+             
+                  <div class="paramsDiv">
+                    
+                    <tabel class="statisticTable">
+                      <tr class="statisticTableTr">
+                        <th class="statisticTableThTd"><p>Время начала</p></th>
+                        <th class="statisticTableThTd"><p>Время окончания</p></th>
+                        <th class="statisticTableThTd" width="30%"><p>Заряд</p></th>
+                      </tr>
+                      
+                      {{#each this.lastCharges as |item i|}}
+                      <tr class="statisticTableTr">
+                        <td class="statisticTableThTd">{{this.startDate}}</td>    
+                        <td class="statisticTableThTd">{{this.endDate}}</td> 
+                        <td class="statisticTableThTd">{{this.consumedPower}} кВт*ч</td> 
+                      </tr>
+                      {{/each}}
+                      
+                    </tabel>
+                      
+                    
+                  </div>
+           
+            
+
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+
+  {{/each}}
+</table>

@@ -1,0 +1,259 @@
+<div class="popWindow timer_info">
+    <div>
+        <p id="timer_info_text" class="commonText"></p>
+        <br>
+    </div>
+</div>
+
+<div class="timersDiv" id="timersDiv">
+    <p class="timerTableTitle">Настройки биллинга</p>
+    <table id="timersTable" class="timerTable">
+        <thead>
+            <tr class="timeTable_tr">
+                <th>Стоимость кВт*ч, руб.</th>
+                <th>Комиссия, %</th>
+                <th>Начало периода</th>
+                <th>Завершение периода</th>
+                <th>Потребление, кВт*ч</th>
+                <th>Сумма полученного дохода, руб.</th>
+                <th>Сумма дохода к перечислению, руб.</th>
+                
+            </tr>
+            <tr class="timeTable_tr">
+                <th>
+                    <p id="priceRub">{{info.priceRub}}</p>
+                </th>
+                <th>
+                    <p id="comission">{{info.comission}}</p>
+                </th>
+                <th><input type="date" id="startDateRange"></th>
+                <th><input type="date" id="finishDateRange"></th>
+                <th>
+                    <p id="consumedPwr">0.0</p>
+                </th>
+                <th>
+                    <p id="amountOfIncome">0.0</p>
+                </th>
+                <th>
+                    <p id="amountOfComission">0.0</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <br>
+    <div>
+        <button class="commonButton" onclick="updateBillingParams()">Обновить</button>
+    </div>
+    <br>
+    <p class="timerTableTitle">Зарядные сессии</p>
+    <table class="iksweb" id="sessionTable">
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Время начала</th>
+                <th>Время окончания</th>
+                <th>Время заряда</th>
+                <th>Заряд, квт*ч</th>
+                <th>Стоимость квт*ч, руб</th>
+                <th>Сумма, руб</th>
+                <th>Комиссия, %</th>
+                <th>Пользователь</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+<div style="margin-left: 30px; margin-top: 50px; margin-bottom: 35px">
+</div>
+</div>
+
+
+
+
+<script>
+
+    let url_string = window.location.href;
+    let url = new URL(url_string);
+    const sta = url.searchParams.get("num");
+
+
+    let startDateRange = localStorage.getItem("savedStartDateRange");
+    let finishDateRange = localStorage.getItem("savedFinishDateRange");
+    
+    if (!(startDateRange && finishDateRange)) {
+
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, '0');
+        let mm = String(today.getMonth() + 1).padStart(2, '0');
+        let yyyy = today.getFullYear();
+
+        document.getElementById("startDateRange").value = yyyy + "-" + mm + "-" + "01";
+        document.getElementById("finishDateRange").value = yyyy + "-" + mm + "-" + dd;
+
+        localStorage.setItem("savedStartDateRange", `${yyyy}-${mm}-01`);
+        localStorage.setItem("savedFinishDateRange", `${yyyy}-${mm}-${dd}`);
+    }
+    else {
+
+        let startDateRangeStr = startDateRange.split("-");
+        document.getElementById("startDateRange").value = startDateRangeStr[0] + "-" + startDateRangeStr[1] + "-" + startDateRangeStr[2];
+
+        let finishDateRangeStr = finishDateRange.split("-");
+        document.getElementById("finishDateRange").value = finishDateRangeStr[0] + "-" + finishDateRangeStr[1] + "-" + finishDateRangeStr[2];
+    }
+
+
+    $('document').ready(function () {
+
+
+        getStationSessions();
+
+    })
+
+
+
+    function updateBillingParams() {
+
+        let startDateRangeStr = document.getElementById("startDateRange").value;
+        localStorage.setItem("savedStartDateRange", startDateRangeStr);
+
+        startDateRangeStr = startDateRangeStr.split("-");
+        let startDateRangeTimeStamp = (new Date(startDateRangeStr[0], startDateRangeStr[1] - 1, startDateRangeStr[2])).getTime();
+
+        let finishDateRangeStr = document.getElementById("finishDateRange").value;
+        localStorage.setItem("savedFinishDateRange", finishDateRangeStr);
+        finishDateRangeStr = finishDateRangeStr.split("-");
+        let finishDateRangeTimeStamp = (new Date(finishDateRangeStr[0], finishDateRangeStr[1] - 1, finishDateRangeStr[2])).getTime();
+
+        location.reload();
+
+    }
+
+
+
+    function getStationSessions() {
+
+        let params = {};
+
+        let startDateRangeStr = document.getElementById("startDateRange").value;
+        startDateRangeStr = startDateRangeStr.split("-");
+        let startDateRangeTimeStamp = (new Date(startDateRangeStr[0], startDateRangeStr[1] - 1, startDateRangeStr[2])).getTime();
+
+        let finishDateRangeStr = document.getElementById("finishDateRange").value;
+        finishDateRangeStr = finishDateRangeStr.split("-");
+        let finishDateRangeTimeStamp = (new Date(finishDateRangeStr[0], finishDateRangeStr[1] - 1, finishDateRangeStr[2])).getTime();
+        
+
+        params.startDate = startDateRangeTimeStamp;
+        params.finishDate = finishDateRangeTimeStamp;
+        params.stationNum = sta;
+
+        $.ajax({
+            url: `/stationSessions`,
+            contentType: "application/json; charset=utf-8",
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(params),
+            success: (sessions) => {
+
+
+                let amountOfIncome = 0;
+                let amountOfComission = 0;
+                let totalConsumedPower = 0;
+
+                let j = 0;
+                for (let s of sessions) {
+
+                    let start = s.startedAt;
+                    let end = s.endedAt;
+                    let duration = (end - start) / 1000;
+                    let consumedPower = s.consumedPower;
+                    let sessionPrice = s.fixedPrice / 100;
+                    if(sessionPrice===undefined) sessionPrice = 0;
+                    let sessionCost = s.totalCost / 100;
+                    if(sessionCost===undefined) sessionCost = 0;
+                    let sessionComission = s.fixedComission;
+                    if(sessionComission===undefined) sessionComission = 0;
+
+                    totalConsumedPower+=consumedPower;
+
+                    let userPhone = s.userPhone;
+
+                    let date = new Date(start);
+
+                    let startDate = date.getDate() + '.' + (date.getMonth() + 1);
+
+                    let startTimeHours = date.getHours();
+                    if (startTimeHours < 10)
+                        startTimeHours = "0" + startTimeHours;
+                    let startTimeMinuts = date.getMinutes();
+                    if (startTimeMinuts < 10)
+                        startTimeMinuts = "0" + startTimeMinuts;
+
+                    let startTime = startTimeHours + ":" + startTimeMinuts;
+
+                    date = new Date(end);
+                    let endTimeHours = date.getHours();
+                    if (endTimeHours < 10)
+                        endTimeHours = "0" + endTimeHours;
+                    let endTimeMinuts = date.getMinutes();
+                    if (endTimeMinuts < 10)
+                        endTimeMinuts = "0" + endTimeMinuts;
+
+                    let endtTime = endTimeHours + ":" + endTimeMinuts;
+
+                    let durationMinuts = Math.trunc((duration / 60) % 60);
+                    if (durationMinuts < 10)
+                        durationMinuts = "0" + durationMinuts;
+                    let durationHours = Math.trunc((duration / 3600));
+                    if (durationHours < 10)
+                        durationHours = "0" + durationHours;
+
+                    let durationTime = durationHours + ":" + durationMinuts;
+
+                    if ((j >= 10) && (!(j % 10))) {
+                        $('#sessionTable').append('<tr><td colspan="5"></td></tr>');
+                    }
+
+
+
+                    let row = `<tr>
+				<td>${startDate}</td>
+				<td>${startTime}</td>
+				<td>${endtTime}</td>
+				<td>${durationTime}</td>
+                <td>${consumedPower}</td>
+				<td>${sessionPrice}</td>
+                <td>${sessionCost}</td>
+                <td>${sessionComission}</td>
+                <td>${userPhone}</td>
+                
+                </tr>`
+
+                    $('#sessionTable').append(row);
+
+                    j++;
+
+                    if (s.totalCost === undefined) s.totalCost = 0;
+                    amountOfIncome += s.totalCost;
+                    if (s.comissionCost === undefined) s.comissionCost = 0;
+                    amountOfComission += s.comissionCost;
+                }
+
+
+                amountOfIncome = amountOfIncome / 100;
+                amountOfComission = amountOfComission / 100;
+
+                document.getElementById("amountOfIncome").innerHTML = amountOfIncome;
+                document.getElementById("amountOfComission").innerHTML = amountOfComission;
+                document.getElementById("consumedPwr").innerHTML = Math.round(totalConsumedPower*10)/10;
+
+            }
+        })
+    }
+
+
+</script>

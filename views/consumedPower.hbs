@@ -1,0 +1,23 @@
+<div class="mobile-table">
+	<table class="iksweb" id="consumedPowerTable">
+		<thead>
+			<tr>
+				<th>Станция</th>
+				<th>Заряд, квт*ч</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each data}}
+			<tr>
+				<td>{{this.stationNum}}</td>
+				<td>{{this.cp}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</div>
+
+
+
+
+

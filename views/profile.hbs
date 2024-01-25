@@ -1,0 +1,246 @@
+<div class="popWindow subscribe_window">
+    <div>
+        <p class="commonText">Выберите номер станции</p>
+        <br>
+        <select id="stationSelector">
+        </select>
+    </div>
+    <br>
+    <div>
+        <button class="commonButton2" onclick="addTimer()">Добавить</button>
+        <button class="commonButton2" onclick="hideTimerForm()">Отмена</button>
+    </div>
+</div>
+
+<div class="popWindow timer_info">
+    <div>
+        <p id="timer_info_text" class="commonText"></p>
+        <br>
+    </div>
+</div>
+
+<div class="timersDiv" id="timersDiv">
+    <p class="timerTableTitle">Таймеры включения станции</p>
+    <table id="timersTable" class="timerTable">
+        <thead>
+            <tr class="timeTable_tr">
+                <th class="timeTable_tr">Включено</th>
+                <th>Время</th>
+                <th>Станция</th>
+                <th>Удалить</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+
+    </table>
+    <br>
+    <button class="commonButton" onclick="showTimerForm()">Добавить таймер</button>
+    <br>
+
+    <br>
+    <div>
+        <button class="commonButton" onclick="saveTimers()">Сохранить</button>
+    </div>
+</div>
+
+<p style="margin-left: 30px; margin-top: 25px;" class="commonText" id="Balance">Баланс: {{balance}} руб.</p>
+<div><button class="commonButton" onclick="location.href='/payment'"
+        style="margin-left: 30px; margin-top: 20px;">Пополнить баланс</button></div>
+<div><button class="commonButton" onclick="logout()" style="margin-left: 30px; margin-top: 50px;">Выйти</button></div>
+
+{{#if sesionButtonVisible}}
+<div><button class="commonButton" onclick="location.href='/sessions'"
+        style="margin-left: 30px; margin-top: 40px;">Сессии</button></div>
+<div><button class="commonButton" onclick="location.href='/preferredLocation'"
+        style="margin-left: 30px; margin-top: 40px;">Места</button></div>
+<div><button class="commonButton" onclick="location.href='/totalConsumedPwr'"
+        style="margin-left: 30px; margin-top: 40px;">Потребление</button></div>
+<div><button class="commonButton" onclick="location.href='/billingControl'"
+        style="margin-left: 30px; margin-top: 40px;">Биллинг</button></div>
+<div><button class="commonButton" onclick="location.href='/payMentList'"
+        style="margin-left: 30px; margin-top: 40px; margin-bottom: 50px">Платежи</button></div>
+{{/if}}
+
+<script>
+    let savedUserStations;
+    var $subscribeWindow = $(".subscribe_window");
+    var $timer_info = $(".timer_info");
+    var $popOverlay = $(".popup-overlay");
+    $('document').ready(function () {
+
+        $.ajax({
+            url: `/myStations`,
+            type: 'GET',
+            dataType: 'json',
+            success: (userStations) => {
+
+                savedUserStations = userStations;
+
+                for (sta of userStations) {
+                    $('#stationSelector').append($("<option></option>")
+                        .attr("value", sta.stationNum)
+                        .text(sta.stationNum));
+
+
+                    for (timer of sta.timers) {
+
+                        $('#timersDiv').css('visibility', 'visible');
+
+                        let timerValueHour = parseInt(timer.timerValue / 3600);
+
+                        if (timerValueHour < 10)
+                            timerValueHour = '0' + timerValueHour;
+                        else
+                            timerValueHour = timerValueHour + '';
+
+                        let timerValueMinutes = parseInt((timer.timerValue - timerValueHour * 3600) / 60);
+                        if (timerValueMinutes < 10)
+                            timerValueMinutes = '0' + timerValueMinutes;
+                        else
+                            timerValueMinutes = timerValueMinutes + '';
+
+                        const timerValue = timerValueHour + ':' + timerValueMinutes;
+
+
+                        let rowPart1 = `<tr>
+				<td><input type="checkbox" id="chEn_${sta.stationNum}_${timer._id}"`
+
+                        if (timer.enabled)
+                            rowPart1 = rowPart1 + "checked"
+
+                        let rowPart2 = `></td>
+				<td><input type="time" id="tp_${sta.stationNum}_${timer._id}" value="${timerValue}"></td>
+				<td>${sta.stationNum}</td>
+                <td><input type="checkbox" id="chRm_${sta.stationNum}_${timer._id}"></td></tr>`
+                        $('#timersTable').append(rowPart1 + rowPart2);
+
+                    }
+                }
+            }
+        })
+    })
+
+
+
+    function showTimerForm() {
+        $subscribeWindow.fadeIn();
+    }
+
+    function hideTimerForm() {
+        $subscribeWindow.fadeOut();
+    }
+
+    function showTimerInfo() {
+        $timer_info.fadeIn();
+    }
+
+    function hideTimerInfo() {
+        $timer_info.fadeOut();
+    }
+
+    function logout() {
+        const options = {
+            method: 'POST'
+        }
+
+        fetch('logout', options)
+            .then(res => res.json())
+            .then(data => {
+                document.location.href = "/";
+            })
+    }
+
+    function addTimer() {
+        let selectedStaNum = $('#stationSelector').find(":selected").text();
+
+        $.ajax({
+            url: `/addTimer`,
+            type: 'POST',
+            dataType: 'json',
+            data: { stationNum: selectedStaNum },
+            success: (data) => {
+                console.log(data)
+
+                hideTimerForm();
+                $("#timer_info_text").text(data.msg);
+
+                showTimerInfo();
+                setTimeout(() => {
+                    hideTimerInfo();
+                    location.reload();
+                }, 2000);
+            }
+        })
+    }
+
+
+    function saveTimers() {
+
+        var x = new Date();
+        var zoneOffset = x.getTimezoneOffset() * -1;
+
+        let stationTimers = [];
+        let removedStationTimers = [];
+
+        let i = 0;
+
+        for (sta of savedUserStations) {
+
+            if (sta.timers.length) {
+                stationTimers.push({ stationNum: sta.stationNum, timers: [] });
+                removedStationTimers.push({ stationNum: sta.stationNum, timers: [] });
+            }
+            else
+                continue;
+
+            for (timer of sta.timers) {
+
+                let t = {};
+
+                t.zoneOffset = zoneOffset;
+                let timerValueString = document.getElementById(`tp_${sta.stationNum}_${timer._id}`).value;
+
+                const splitedTimerValue = timerValueString.split(':');
+                const hours = parseInt(splitedTimerValue[0], 10);
+                const minutes = parseInt(splitedTimerValue[1], 10);
+
+                let timerValue = hours * 3600 + minutes * 60;
+
+                t.timerValue = timerValue;
+                t.timerId = timer._id;
+                t.enabled = document.getElementById(`chEn_${sta.stationNum}_${timer._id}`).checked;
+
+                stationTimers[i].timers.push(t);
+
+                if (document.getElementById(`chRm_${sta.stationNum}_${timer._id}`).checked) {
+                    console.log(timer._id)
+                    removedStationTimers[i].timers.push(timer._id);
+                }
+            }
+            i++;
+        }
+
+        $.ajax({
+            url: `/setTimers`,
+            type: 'POST',
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            data: JSON.stringify(stationTimers),
+            success: (data) => {
+
+                $.ajax({
+                    url: `/removeTimers`,
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(removedStationTimers),
+                    success: (data) => {
+                        location.reload();
+                    }
+                })
+            }
+
+        })
+    }
+</script>

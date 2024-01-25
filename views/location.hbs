@@ -1,0 +1,162 @@
+<section>
+	<div class="contener">
+		<div class="contener-box">
+			<img src="img/charging-station.png" alt="">
+			<div class="contener-box-txt">
+				<div class="contener-box-title">Станция:</div>
+				<span>№ {{charger.stationNum}} (max. мощность 3,5 кВт)</span>
+			</div>
+		</div>
+	</div>
+	<div class="contener-bg">
+		<div class="contener">
+			<div class="contener-box-js">
+				<img src="img/locations.png" alt="">
+				<div class="contener-box-txt">
+					<div class="contener-box-title">Месторасположение:</div>
+					<span>{{charger.address}}</span>
+
+					{{#if (if_eq charger.stationNum 18) }}
+					<div><span style="color:red">Платная парковка с 22:00 до 7:00 </span></div>
+					{{/if}}
+
+					{{#if (if_eq charger.stationNum 15) }}
+					<div><span style="color:red">Парковка оплачивается отдельно 100р/12часов</span></div>
+					{{/if}}
+
+					{{#if (if_eq charger.stationNum 37) }}
+					<div><span style="color:red">Доступ только для работников СГК</span></div>
+					{{/if}}
+
+				</div>
+				<div class="arrow"></div>
+			</div>
+			<div class="hidden">
+				<div class="hidden-wrap">
+					<div class="left">
+						<a href={{charger.imageUrl}} target=_blank>
+							<img src="img/camera.png" alt="">
+							Посмотреть фото
+						</a>
+					</div>
+					<div class="right">
+						{{charger.description}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	<div class="contener">
+		<div class="contener-box">
+			<img src="img/plug.png" alt="">
+			<div class="contener-box-txt">
+				<div class="contener-box-title">Статус:</div>
+
+				{{#if charger.onLink}}
+				{{#if charger.estabState}}
+				<div id="status" class="txt-green"><span>в сети / занята</span> </div>
+				{{else}}
+				<div id="status" class="txt-green"><span>в сети / свободна</span> </div>
+				{{/if}}
+				{{else}}
+				{{#if charger.estabState}}
+				<div id="status" class="txt-green"><span>не в сети / занята</span> </div>
+				{{else}}
+				<div id="status" class="txt-green"><span>не в сети / свободна</span> </div>
+				{{/if}}
+				{{/if}}
+			</div>
+		</div>
+	</div>
+	<div class="contener">
+		<div class="contener-box">
+			<img src="img/renewable-energy.png" alt="">
+			<div class="contener-box-txt">
+				<div class="contener-box-title">Напряжение: </div>
+				<div class="txt-green"><span id="voltage"> {{charger.voltage}} В</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{{#unless charger.hideProperties}}
+	<div class="contener">
+		<div class="contener-box">
+			<img src="img/renewable-price.png" alt="">
+			<div class="contener-box-txt">
+				<div class="contener-box-title">Стоимость, руб/кВт*ч: </div>
+				<div class="txt-green"><span id="price"> {{charger.price}} руб.</span>
+					<div class="contener-box-title">Баланс: </div>
+					<div class="txt-green"><span id="price"> {{charger.balance}} руб.</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{/unless}}
+</section>
+<section>
+	<div class="timer">
+		<span id="hours">--</span>
+		:
+		<span id="min">--</span>
+		:
+		<span id="sec">--</span>
+	</div>
+	<div class="btn-wrap">
+
+		{{#if charger.userIsMatch}}
+		<button id="controlButton" onclick="ControlButtonClick();">
+			{{#if charger.estabState}}
+			Остановить зарядку
+			{{else}}
+			Начать зарядку
+			{{/if}}
+			{{else}}
+			<button style="opacity: 0;" disabled id="controlButton" onclick="ControlButtonClick();">
+				{{#if charger.estabState}}
+				Остановить зарядку
+				{{else}}
+				Начать зарядку
+				{{/if}}
+				{{/if}}
+			</button>
+	</div>
+
+	<div class="contener-txt">
+		<div class="contener-light-title ">Ожидаемое время завершения заряда:</div>
+		<div class="txt-green pd-green"><span id="expectedTime">--:--</span></div>
+	</div>
+
+	<div class="contener-txt-next">
+		<div class="contener-light-title ">Потребляемая мощность:</div>
+		<div class="txt-green pd-green"><span id="power"> {{charger.pwr}} кВт</span></div>
+	</div>
+	<div class="contener-txt-next">
+		{{#if charger.userIsMatch}}
+		<div class="contener-light-title "><span id="consumedPowerTitle">Потребление с активации:</span></div>
+		<div class="txt-green pd-green"><span id="consumedPower"> {{charger.cPwr}} кВт*ч</span>
+			{{else}}
+			<div class="contener-light-title "><span id="consumedPowerTitle" hidden>Потребление с активации:</span>
+			</div>
+			<div class="txt-green pd-green"><span hidden id="consumedPower"> {{charger.cPwr}} кВт*ч</span>
+				{{/if}}
+			</div>
+		</div>
+		<div class="help-wrap">
+			<div class="help">
+				<a href="tel:+7(996)054-32-33">
+					<img src="img/hotpng.png" alt="">
+					Помощь
+				</a>
+			</div>
+		</div>
+</section>
+
+
+
+</div>
+
+
+
+<script src="js/index.js"></script>

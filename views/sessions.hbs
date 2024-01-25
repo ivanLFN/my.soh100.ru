@@ -1,0 +1,92 @@
+<div class="mobile-table">
+	<table class="iksweb" id="historyTable">
+		<thead>
+			<tr>
+				<th>№</th>
+				<th>Дата</th>
+				<th>Время начала</th>
+				<th>Время окончания</th>
+				<th>Время заряда</th>
+				<th>Заряд, квт*ч</th>
+				<th>Телефон</th>
+				<th>Станция</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<script>
+	$.ajax({
+		url: `/sessions`,
+		type: 'POST',
+		dataType: 'json',
+		success: (data) => {
+
+			let table = [];
+			let i = data.length - 1;
+			let j = 0;
+
+			for (i; i >= 0; i--) {
+				let start = data[i].startedAt;
+				let end = data[i].endedAt;
+				let duration = (end - start) / 1000;
+				let consumedPower = data[i].consumedPower;
+				let phone = data[i].phone;
+				let stationNum = data[i].stationNum;
+
+
+				let date = new Date(start);
+
+				let startDate = date.getDate() + '.' + (date.getMonth() + 1);
+
+				let startTimeHours = date.getHours();
+				if (startTimeHours < 10)
+					startTimeHours = "0" + startTimeHours;
+				let startTimeMinuts = date.getMinutes();
+				if (startTimeMinuts < 10)
+					startTimeMinuts = "0" + startTimeMinuts;
+
+				let startTime = startTimeHours + ":" + startTimeMinuts;
+
+				date = new Date(end);
+				let endTimeHours = date.getHours();
+				if (endTimeHours < 10)
+					endTimeHours = "0" + endTimeHours;
+				let endTimeMinuts = date.getMinutes();
+				if (endTimeMinuts < 10)
+					endTimeMinuts = "0" + endTimeMinuts;
+
+				let endtTime = endTimeHours + ":" + endTimeMinuts;
+
+				let durationMinuts = Math.trunc((duration / 60) % 60);
+				if (durationMinuts < 10)
+					durationMinuts = "0" + durationMinuts;
+				let durationHours = Math.trunc((duration / 3600));
+				if (durationHours < 10)
+					durationHours = "0" + durationHours;
+
+				let durationTime = durationHours + ":" + durationMinuts;
+
+				if ((j >= 10) && (!(j % 10))){
+					$('#historyTable').append('<tr><td colspan="5"></td></tr>');
+				}
+
+				let row = `<tr>
+				<td>${i}</td>
+				<td>${startDate}</td>
+				<td>${startTime}</td>
+				<td>${endtTime}</td>
+				<td>${durationTime}</td>
+				<td>${consumedPower}</td>
+				<td>${phone}</td><
+				<td>${stationNum}</td></tr>`
+				$('#historyTable').append(row);
+
+				j++;
+			}
+
+		}
+	})
+</script>
