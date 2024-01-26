@@ -24,6 +24,17 @@ body {
   background-position: center center;
 }
 
+.menu-nav-link {
+  width: 30%;
+  height: 100px;
+  box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.9);
+}
+
+.start-link {
+  box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.9);
+  padding: 10px;
+}
+
 .body-panel {
   background-color: white;
   width: 100%;
@@ -35,6 +46,13 @@ body {
   box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.9);
   border-top-left-radius: 35px;
   border-top-right-radius: 35px;
+}
+
+.start-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  width: 100%;
 }
 
 .home-body {
@@ -372,7 +390,7 @@ a.active {
   font-display: swap;
   font-size: 17px;
   padding-top: 30px;
-  padding-bottom: 180px;
+  padding-bottom: 200px;
   padding-left: 15px;
   padding-right: 15px;
 }

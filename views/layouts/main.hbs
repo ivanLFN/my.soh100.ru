@@ -24,7 +24,7 @@
 
 <body>
 
-	<div class="body-panel">
+	<div class="body-panel overflow-auto">
 		{{{body}}}
 	</div>
 	
@@ -44,8 +44,25 @@
 		</div>
 
 		<div class="main-menu">
-			  <a href="#" class="left-link">Ссылка слева</a>
-  			<a href="#" onclick="togglePanel()" class="right-link accordion-trigger">Ссылка справа</a>
+				<a
+					href="#"
+					class="menu-nav-link d-flex align-items-center justify-content-center"
+					style="border-top-right-radius: 80px;"
+				>
+						<img
+							src="img/home-icon.png"
+							id="browserImage1"
+							alt=""
+						>
+				</a>
+				<a
+					href="#"
+					onclick="togglePanel()"
+					class="menu-nav-link accordion-trigger d-flex align-items-center justify-content-center"
+					style="border-top-left-radius: 80px;"
+				>
+						<img src="img/menu-icon.png" id="browserImage2" alt="">
+				</a>
 		</div>
 
 		{{!-- <div class="menu-bg">
