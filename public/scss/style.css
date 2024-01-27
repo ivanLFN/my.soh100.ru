@@ -282,7 +282,7 @@ body {
 }
 
 .panel-content-expanded {
-  height: 650px; /* Высота раскрытой панели */
+  height: 700px; /* Высота раскрытой панели */
 }
 
 .menu-bg {
@@ -409,8 +409,6 @@ a.active {
 
 /*# sourceMappingURL=style.css.map */
 
-
-
 .instructionText{
   font-display: swap;
   font-size: 17px;
@@ -440,12 +438,10 @@ a.active {
 }
 
 .commonText{
-  font-family: "HelveticaNeueCyr-Medium";
-  src: url("../fonts/HelveticaNeueCyr-Medium.otf") format("opentype");
-  font-style: normal;
-
+  margin-top: 30px;
   font-display: swap;
   font-size: 17px;
+  color: #2c3e51;
 }
 
 .commonTextTitle{
