@@ -31,21 +31,111 @@
 	<section>
 
 		<div class="panel-container" id="panelContainer">
-			<div class="panel-content">
-				<p>Your panel content goes here.</p>
-				<p>Your panel content goes here.</p>
-				<p>Your panel content goes here.</p>
-				<p>Your panel content goes here.</p>
-				<p>Your panel content goes here.</p>
-				<p>Your panel content goes here.</p>
-				<p>Your panel content goes here.</p>
-				<p>Your panel content goes here.</p>
+			<div class="panel-content pl-5">
+
+				<a
+					class="option-item mt-4 mt-md-2 d-flex align-items-center"
+					href="/profile"
+				>
+						<img
+							src="img/person-50.png"
+							alt="person"
+							class="me-3"
+							style="width: 45px; height: 45px"
+						>
+						Учетная запись
+				</a>
+
+				<a
+					class="option-item mt-3 mt-md-2 d-flex align-items-center"
+					onclick="history()" 
+					href="/history"
+				>
+						<img
+							src="img/history-50.png"
+							alt="person"
+							class="me-3"
+							style="width: 45px; height: 45px"
+						>
+						Архив
+				</a>
+
+				<a
+					class="option-item mt-3 mt-md-2 d-flex align-items-center"
+					href="#"
+				>
+						<img
+							src="img/credit-card-50.png"
+							alt="person"
+							class="me-3"
+							style="width: 45px; height: 45px"
+						>
+						Банковская карта
+				</a>
+
+				<a
+					class="option-item mt-3 mt-md-2 d-flex align-items-center"
+					href="#"
+				>
+						<img
+							src="img/brief-50.png"
+							alt="person"
+							class="me-3"
+							style="width: 45px; height: 45px"
+						>
+						Правила использования
+				</a>
+
+				<a
+					class="option-item mt-3 mt-md-2 d-flex align-items-center"
+					href="#"
+				>
+						<img
+							src="img/question-50.png"
+							alt="person"
+							class="me-3"
+							style="width: 45px; height: 45px"
+						>
+						Техническая поддержка
+				</a>
+
+				<a
+					class="option-item mt-3 mt-md-2 d-flex align-items-center"
+					href="#"
+				>
+						<img
+							src="img/settings-50.png"
+							alt="person"
+							class="me-3"
+							style="width: 45px; height: 45px"
+						>
+						Настройки
+				</a>
+
+				<a
+					class="option-item mt-3 mt-md-2 d-flex align-items-center"
+					href="#"
+				>
+						<img
+							src="img/logout-50.png"
+							alt="person"
+							class="me-3"
+							style="width: 45px; height: 45px"
+						>
+						Выход
+				</a>
+				<div
+					class="mt-5 w-100 text-center justify-content-center"
+					style="font-size: 0.8rem;"
+				>
+					2024 © ООО "СОХ100". Все права защищены.
+				</div>
 			</div>
 		</div>
 
 		<div class="main-menu">
 				<a
-					href="#"
+					href="/"
 					class="menu-nav-link d-flex align-items-center justify-content-center"
 					style="border-top-right-radius: 80px;"
 				>
@@ -64,42 +154,19 @@
 						<img src="img/menu-icon.png" id="browserImage2" alt="">
 				</a>
 		</div>
-
-		{{!-- <div class="menu-bg">
-			<ul>
-				<li>
-					<a href="/">
-						<img src="img/browser.svg" id="browserImage" alt="">
-						Главная
-					</a>
-				</li>
-				<li>
-					<a href="/map">
-						<img class="img-svg" onclick="main()" src="img/location2.png" alt="">
-						Карта
-					</a>
-				</li>
-				<li>
-					<a onclick="history()" href="/history">
-						<img src="img/clock.svg" alt="">
-						История
-					</a>
-				</li>
-				<li>
-					<a href="/profile">
-						<img src="img/user.svg" alt="">
-						Профиль
-					</a>
-				</li>
-			</ul>
-
-		</div> --}}
+		
 	</section>
+
+	<div id="overlay"></div>
+
 
 	<script>
 		function togglePanel() {
-			const panelContainer = document.getElementById('panelContainer');
-			panelContainer.classList.toggle('panel-content-expanded');
+				const panelContainer = document.getElementById('panelContainer');
+				const overlay = document.getElementById('overlay');
+
+				panelContainer.classList.toggle('panel-content-expanded');
+				overlay.style.display = panelContainer.classList.contains('panel-content-expanded') ? 'block' : 'none';
 		}
 	</script>
 
