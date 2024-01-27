@@ -24,10 +24,18 @@ body {
   background-position: center center;
 }
 
+.option-item {
+  font-size: 1.3rem;
+  font-weight: 250;
+  text-decoration: none;
+  color: #2c3e51;
+}
+
 .menu-nav-link {
   width: 30%;
   height: 100px;
   box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.9);
+  background-color: white;
 }
 
 .start-link {
@@ -46,13 +54,15 @@ body {
   box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.9);
   border-top-left-radius: 35px;
   border-top-right-radius: 35px;
+  z-index: -999;
 }
 
 .start-btn {
   position: fixed;
-  bottom: 30px;
+  bottom: 60px;
   left: 0;
   width: 100%;
+  z-index: 999;
 }
 
 .home-body {
@@ -228,22 +238,37 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  z-index: 998;
 }
 
 .panel-container {
   width: 100%;
   height: 0px;
-  background-color: #333;
-  color: #fff;
+  background-color: white;
+  color: #2c3e51;
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: -1;
+  z-index: 1;
   transition: height 0.3s ease;
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
+  box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.5);
 }
 
 .panel-content {
   padding: 10px;
+}
+
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 0;
 }
 
 .panel-toggle {
@@ -257,7 +282,7 @@ body {
 }
 
 .panel-content-expanded {
-  height: 500px; /* Высота раскрытой панели */
+  height: 650px; /* Высота раскрытой панели */
 }
 
 .menu-bg {
@@ -390,9 +415,10 @@ a.active {
   font-display: swap;
   font-size: 17px;
   padding-top: 30px;
-  padding-bottom: 200px;
+  padding-bottom: 220px;
   padding-left: 15px;
   padding-right: 15px;
+  color: #2c3e51;
 }
 
 .restorePass{
