@@ -30,18 +30,8 @@
 				class="img-settings"
 			/>
 			<div class="text-charger-info">
+				<span style="font-weight: 500;">Адрес:</span>
 				{{charger.address}}
-				{{#if (if_eq charger.stationNum 18) }}
-					<div><span style="color:red; font-size: 1rem;">Платная парковка с 22:00 до 7:00 </span></div>
-					{{/if}}
-
-					{{#if (if_eq charger.stationNum 15) }}
-					<div><span style="color:red; font-size: 1rem;">Парковка оплачивается отдельно 100р/12часов</span></div>
-					{{/if}}
-
-					{{#if (if_eq charger.stationNum 37) }}
-					<div><span style="color:red; font-size: 1rem;">Доступ только для работников СГК</span></div>
-					{{/if}}
 			</div>
 		</div>
 		<div class="d-flex align-items-center mt-3">
@@ -52,7 +42,6 @@
 			/>
 			<div class="text-charger-info">
 				<span style="font-weight: 500;">№ </span>{{charger.stationNum}}, 3.5 кВт<br>
-				<span style="font-weight: 500;">Напряжение:</span> {{charger.voltage}}
 			</div>
 		</div>
 		<div class="d-flex align-items-center mt-3">
@@ -62,7 +51,6 @@
 				class="img-settings"
 			/>
 			<div class="text-charger-info">
-				<span style="font-weight: 500;">Стоимость: </span> {{charger.price}} руб/кВт*ч<br>
 				 <span style="font-weight: 500;">Баланс: </span>{{charger.balance}} руб.
 			</div>
 		</div>
@@ -95,6 +83,29 @@
 						<div class="contener-txt-next">
 							<div class="contener-light-title ">Потребляемая мощность:</div>
 							<div class="txt-green pd-green"><span id="power"> {{charger.pwr}} кВт</span></div>
+						</div>
+						<div class="contener-txt">
+							<div class="contener-light-title ">Стоимость:</div>
+							<div class="txt-green pd-green">{{charger.price}} руб/кВт*ч</div>
+						</div>
+						<div class="contener-txt">
+							<div class="contener-light-title ">Напряжение:</div>
+							<div class="txt-green pd-green">{{charger.voltage}} В</div>
+						</div>
+						<div class="contener-txt">
+							<div class="txt-green pd-green">
+								{{#if (if_eq charger.stationNum 18) }}
+									<div><span style="color:red; font-size: 1rem;">Платная парковка с 22:00 до 7:00 </span></div>
+									{{/if}}
+
+									{{#if (if_eq charger.stationNum 15) }}
+									<div><span style="color:red; font-size: 1rem;">Парковка оплачивается отдельно 100р/12часов</span></div>
+									{{/if}}
+
+									{{#if (if_eq charger.stationNum 37) }}
+									<div><span style="color:red; font-size: 1rem;">Доступ только для работников СГК</span></div>
+								{{/if}}
+							</div>
 						</div>
 						<div class="contener-txt-next">
 							{{#if charger.userIsMatch}}

@@ -24,6 +24,11 @@ body {
   background-position: center center;
 }
 
+.select-item {
+  width: 70%;
+  height: 35px;
+}
+
 .more-info-accordion {
   display: flex;
   text-align: center;
@@ -79,6 +84,21 @@ body {
   border-radius: 30px;
   padding: 8px 30px;
   border-color: #2c3e51;
+}
+
+.add-button {
+  font-size: 1.6rem;
+  font-weight: 250;
+  text-decoration: none;
+  color: #2c3e51;
+  background-color: white;
+  border-radius: 30px;
+  padding: 8px 30px;
+  border-color: #2c3e51;
+}
+
+.cancel {
+  border-color: #fc6363;
 }
 
 .menu-nav-link {
@@ -454,6 +474,12 @@ a.active {
   color: #2c3e51;
 }
 
+@media only screen and (max-width: 400px) {
+  .instructionText {
+    font-size: 15px;
+  }
+}
+
 .restorePass{
   font-family: "HelveticaNeueCyr-Medium";
   src: url("../fonts/HelveticaNeueCyr-Medium.otf") format("opentype");
@@ -464,18 +490,11 @@ a.active {
 }
 
 .commonTextLittle{
-  font-family: "HelveticaNeueCyr-Medium";
-  src: url("../fonts/HelveticaNeueCyr-Medium.otf") format("opentype");
-  font-style: normal;
-  margin-bottom: 10px;
-  font-display: swap;
-  font-size: 15px;
+  font-size: 1.1rem;
 }
 
 .commonText{
-  margin-top: 30px;
-  font-display: swap;
-  font-size: 17px;
+  font-size: 1.5rem;
   color: #2c3e51;
 }
 
@@ -583,9 +602,6 @@ a {
   padding: 10px 26px;
   margin: 20px;
   text-align: center;
-  
-  font-family: "HelveticaNeueCyr-Medium";
-  src: url("../fonts/HelveticaNeueCyr-Medium.otf") format("opentype");
 
   text-decoration: none;
   display: inline-block;
@@ -637,23 +653,12 @@ a {
 /* Основные стили для всплывающего окна */
 .popWindow{
   display: none;
-  background-color: #4E4E4E;
-  color: #fff;
-  width: 70%;
-  max-width: 720px;
-  padding: 40px 30px;
+  background-color: white;
+  color: #2c3e51;
+  width: 100%;
+  height: 100%;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -360px;
-  margin-top: -185px;
-  text-align: center;
-  box-shadow: 0 0 30px rgba(18, 17, 12, 0.5);
-}
-/* Стили для адаптивности всплывающего окна */
-@media only screen and (max-width : 800px) {
-  .popWindow {
-    align-self: center;
-    margin-left: -40%;
-  }
+  top: 0%;
+  left: 0px;
+  box-shadow: 0 0 30px rgba(18, 17, 12, 0.9);
 }

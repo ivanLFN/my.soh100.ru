@@ -241,13 +241,17 @@ router.get('/profile', checkAuthenticated, async (req, res) => {
     let balanceKop_L = Math.abs(Math.trunc(balance / 10) % 10);
     let balanceStr = `${balanceRub}.${balanceKop_L}${balanceKop_R}`;
     params.balance = balanceStr;
-    if (user.role) {
-        if (user.role[1] === "admin") {
-            params.sesionButtonVisible = true;
-        }
+
+    if (user.role && user.role.includes("admin")) {
+        params.sesionButtonVisible = true;
     }
-    res.render('profile.hbs', params);
-})
+
+    Station.getStationsWithAccessCheck(user._id, (stations) => {
+        params.stations = stations;
+        res.render('profile.hbs', params);
+        console.log(stations)
+    });
+});
 
 // Вызывается при нажатии кнопки "Начать зарядку" и "Остановить зарядку"
 router.post("/stationControl", checkAuthenticated, function (req, res) {
