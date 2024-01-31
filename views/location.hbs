@@ -1,5 +1,73 @@
 <section>
-	<div class="contener">
+	<div class="charger-info mx-3 mx-md-1 mt-3 mt-md-2">
+		<div class="d-flex align-items-center">
+			<img
+				src="/img/status-station.png"
+				alt="logo-link"
+				class="img-settings"
+			/>
+			<div class="text-charger-info">
+				<span style="font-weight: 500;">Статус:</span>
+				{{#if charger.onLink}}
+				{{#if charger.estabState}}
+				<div id="status" class=""><span>в сети / занята</span> </div>
+				{{else}}
+				<div id="status" class=""><span>в сети / свободна</span> </div>
+				{{/if}}
+				{{else}}
+				{{#if charger.estabState}}
+				<div id="status" class=""><span>не в сети / занята</span> </div>
+				{{else}}
+				<div id="status" class=""><span>не в сети / свободна</span> </div>
+				{{/if}}
+				{{/if}}
+			</div>
+		</div>
+		<div class="d-flex align-items-center mt-3">
+			<img
+				src="/img/location-station.png"
+				alt="logo-link"
+				class="img-settings"
+			/>
+			<div class="text-charger-info">
+				{{charger.address}}
+				{{#if (if_eq charger.stationNum 18) }}
+					<div><span style="color:red; font-size: 1rem;">Платная парковка с 22:00 до 7:00 </span></div>
+					{{/if}}
+
+					{{#if (if_eq charger.stationNum 15) }}
+					<div><span style="color:red; font-size: 1rem;">Парковка оплачивается отдельно 100р/12часов</span></div>
+					{{/if}}
+
+					{{#if (if_eq charger.stationNum 37) }}
+					<div><span style="color:red; font-size: 1rem;">Доступ только для работников СГК</span></div>
+					{{/if}}
+			</div>
+		</div>
+		<div class="d-flex align-items-center mt-3">
+			<img
+				src="/img/type-station.png"
+				alt="logo-link"
+				class="img-settings"
+			/>
+			<div class="text-charger-info">
+				<span style="font-weight: 500;">№ </span>{{charger.stationNum}}, 3.5 кВт<br>
+				<span style="font-weight: 500;">Напряжение:</span> {{charger.voltage}}
+			</div>
+		</div>
+		<div class="d-flex align-items-center mt-3">
+			<img
+				src="/img/rub-station.png"
+				alt="logo-link"
+				class="img-settings"
+			/>
+			<div class="text-charger-info">
+				<span style="font-weight: 500;">Стоимость: </span> {{charger.price}} руб/кВт*ч<br>
+				 <span style="font-weight: 500;">Баланс: </span>{{charger.balance}} руб.
+			</div>
+		</div>
+	</div>
+	{{!-- <div class="contener">
 		<div class="contener-box">
 			<img src="img/charging-station.png" alt="">
 			<div class="contener-box-txt">
@@ -93,7 +161,7 @@
 				</div>
 			</div>
 		</div>
-		{{/unless}}
+		{{/unless}} --}}
 </section>
 <section>
 	<div class="timer">
@@ -123,7 +191,7 @@
 			</button>
 	</div>
 
-	<div class="contener-txt">
+	{{!-- <div class="contener-txt">
 		<div class="contener-light-title ">Ожидаемое время завершения заряда:</div>
 		<div class="txt-green pd-green"><span id="expectedTime">--:--</span></div>
 	</div>
@@ -150,13 +218,9 @@
 					Помощь
 				</a>
 			</div>
-		</div>
+		</div> --}}
 </section>
 
-
-
 </div>
-
-
 
 <script src="js/index.js"></script>

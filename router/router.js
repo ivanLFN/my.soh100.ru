@@ -102,6 +102,7 @@ router.get('/stations', function (req, res) {
 // По-хорошему здесь должна быть промежуточная функция аутентификации. Но из-за того что
 // на страницу станции СГК может заходить любой желающий, аутентификацию пришлось перенести ниже
 router.get('/station', function (req, res) {
+    console.log(req);
     let stationNum = req.query.num;
     if (!stationNum || stationNum === 'undefined') {// В запросе должен быть номер станции
         return res.redirect('/map');
