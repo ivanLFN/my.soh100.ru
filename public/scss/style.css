@@ -24,6 +24,11 @@ body {
   background-position: center center;
 }
 
+.th-table {
+  font-weight: 350 !important;
+  color: #303b46;
+}
+
 .select-item {
   width: 70%;
   height: 35px;
@@ -86,14 +91,36 @@ body {
   border-color: #2c3e51;
 }
 
-.add-button {
-  font-size: 1.6rem;
+.classical-btn {
+  font-size: 1.3rem;
   font-weight: 250;
   text-decoration: none;
   color: #2c3e51;
   background-color: white;
   border-radius: 30px;
   padding: 8px 30px;
+  border-color: #2c3e51;
+}
+
+.add-button {
+  font-size: 1.3rem;
+  font-weight: 250;
+  text-decoration: none;
+  color: #2c3e51;
+  background-color: white;
+  border-radius: 30px;
+  padding: 8px 30px;
+  border-color: #2c3e51;
+}
+
+.add-balance-btn {
+  font-size: 1.1rem;
+  font-weight: 550;
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  border-radius: 30px;
+  padding: 5px 15px;
   border-color: #2c3e51;
 }
 
@@ -514,10 +541,6 @@ table.iksweb{text-decoration: none;border-collapse:collapse;width:100%;text-alig
 	table.iksweb tr:hover td{color:#4E4E4E;cursor:default;}
   .mobile-table{width: 100%; max-width: 100%; overflow-x: auto;}
   
-
-
-
-
   * {box-sizing: border-box}
 
 /* Add padding to containers */
@@ -610,33 +633,24 @@ a {
 
 .timersDiv {
   display: inline-block;
-  font-size: 16px;
-  font-family: "HelveticaNeueCyr-Roman";
-  src: url("../fonts/HelveticaNeueCyr-Roman.otf") format("opentype");
-  margin-left: 30px;
-  margin-top: 30px;
+  font-size: 1.1rem;
 }
 
 .timerTable {
   border-collapse: collapse;
   text-align: center;
-  border: 2px solid #4E4E4E;
+  border: 2px solid #2c3e51;
 }
 
 .timerTable th,td{
   border-collapse: collapse;
   text-align: center;
-  border: 2px solid #4E4E4E;
-  padding: 5px;
 }
 
 .timerTableTitle{
-  font-family: "HelveticaNeueCyr-Medium";
-  src: url("../fonts/HelveticaNeueCyr-Medium.otf") format("opentype");
-  font-style: normal;
-  margin-bottom: 1px;
-  font-display: swap;
-  font-size: 15px;
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: #2c3e51;
 }
 
 .popup-overlay {
