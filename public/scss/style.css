@@ -122,6 +122,13 @@ body {
   border-color: #2c3e51;
 }
 
+.update-btn {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .add-button {
   font-size: 1.3rem;
   font-weight: 250;
@@ -649,11 +656,6 @@ a {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-}
-
-.timersDiv {
-  display: inline-block;
-  font-size: 1.1rem;
 }
 
 .timerTable {

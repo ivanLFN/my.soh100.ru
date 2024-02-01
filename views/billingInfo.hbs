@@ -5,19 +5,19 @@
     </div>
 </div>
 
-<div class="timersDiv" id="timersDiv">
-    <p class="timerTableTitle">Настройки биллинга</p>
-    <table id="timersTable" class="timerTable">
+<div id="timersDiv" style="min-height: 629px; max-height: 630px; overflow-y: auto;">
+    <p style="margin-left: 20px;" class="mt-4 mt-md-2 timerTableTitle">Информация о станции</p>
+
+    <table class="mb-5 mb-md-3 table" id="timersTable">
         <thead>
-            <tr class="timeTable_tr">
-                <th>Стоимость кВт*ч, руб.</th>
-                <th>Комиссия, %</th>
-                <th>Начало периода</th>
-                <th>Завершение периода</th>
-                <th>Потребление, кВт*ч</th>
-                <th>Сумма полученного дохода, руб.</th>
-                <th>Сумма дохода к перечислению, руб.</th>
-                
+            <tr>
+                <th class="th-table">Стоимость кВт*ч, руб.</th>
+                <th class="th-table">Комиссия, %</th>
+                <th class="th-table">Начало периода</th>
+                <th class="th-table">Завершение периода</th>
+                <th class="th-table">Потребление, кВт*ч</th>
+                <th class="th-table">Сумма полученного дохода, руб.</th>
+                <th class="th-table">Сумма дохода к перечислению, руб.</th>
             </tr>
             <tr class="timeTable_tr">
                 <th>
@@ -43,35 +43,29 @@
         </tbody>
     </table>
 
-    <br>
-    <div>
-        <button class="commonButton" onclick="updateBillingParams()">Обновить</button>
+    <div class="update-btn">
+        <button class="classical-btn" onclick="updateBillingParams()">Обновить</button>
     </div>
     <br>
-    <p class="timerTableTitle">Зарядные сессии</p>
-    <table class="iksweb" id="sessionTable">
+    <p style="margin-left: 20px;" class="timerTableTitle">Зарядные сессии</p>
+    <table class="mt-5 mt-md-3 mb-5 mb-md-3 table" id="sessionTable" style="margin-bottom: 120px;">
         <thead>
             <tr>
-                <th>Дата</th>
-                <th>Время начала</th>
-                <th>Время окончания</th>
-                <th>Время заряда</th>
-                <th>Заряд, квт*ч</th>
-                <th>Стоимость квт*ч, руб</th>
-                <th>Сумма, руб</th>
-                <th>Комиссия, %</th>
-                <th>Пользователь</th>
+                <th class="th-table">Дата</th>
+                <th class="th-table">Время начала</th>
+                <th class="th-table">Время окончания</th>
+                <th class="th-table">Время заряда</th>
+                <th class="th-table">Заряд, квт*ч</th>
+                <th class="th-table">Стоимость квт*ч, руб</th>
+                <th class="th-table">Сумма, руб</th>
+                <th class="th-table">Комиссия, %</th>
+                <th class="th-table">Пользователь</th>
             </tr>
         </thead>
         <tbody>
         </tbody>
     </table>
-<div style="margin-left: 30px; margin-top: 50px; margin-bottom: 35px">
 </div>
-</div>
-
-
-
 
 <script>
 
