@@ -1,9 +1,10 @@
 <div class="phone-number mt-3 mt-md-3">
     <div class="d-flex justify-content-between mx-2 align-items-center">
         <img
-            src="/img/transaction-50.png"
+            src="/img/ruble-50.png"
             alt="logo-link"
             class="img-settings"
+            style="margin-left: 8px;"
         />
         <div style="font-weight: 450;" class="text-charger-info">
             {{balance}} руб.
@@ -14,20 +15,88 @@
     </div>
 </div>
 
-{{#if sesionButtonVisible}}
-<div><button class="classical-btn" onclick="location.href='/sessions'"
-        style="margin-left: 30px; margin-top: 40px;">Сессии</button></div>
-<div><button class="classical-btn" onclick="location.href='/preferredLocation'"
-        style="margin-left: 30px; margin-top: 40px;">Места</button></div>
-<div><button class="classical-btn" onclick="location.href='/totalConsumedPwr'"
-        style="margin-left: 30px; margin-top: 40px;">Потребление</button></div>
-<div><button class="classical-btn" onclick="location.href='/billingControl'"
-        style="margin-left: 30px; margin-top: 40px;">Биллинг</button></div>
-<div><button class="classical-btn" onclick="location.href='/payMentList'"
-        style="margin-left: 30px; margin-top: 40px; margin-bottom: 50px">Платежи</button></div>
-{{/if}}
+<div class="accordion mt-2" id="accordionExample_1">
+    <div class="accordion-item">
+        <div class="accordion-header py-2" id="headingTwo">
+            <button class="more-info-accordion" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <div class="d-flex mx-2 align-items-center">
+                    <img
+                        src="/img/admin-50.png"
+                        alt="logo-link"
+                        class="img-settings"
+                    />
+                    <div class="text-charger-info">
+                        Опции админа
+                    </div>
+                </div>
+            </button>
+        </div>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample_1">
+            <div class="accordion-body" style="max-height: 310px; overflow-y: auto;">
+                <div class="admin-options row">
+                    <div class="offset-2 col-10">
+                        {{#if sesionButtonVisible}}
+                        <a href="#" onclick="location.href='/sessions'" class="d-flex text-decoration-none mx-2 align-items-center">
+                            <img
+                                src="/img/admin_option/session-timeout-50.png"
+                                alt="logo-link"
+                                class="img-settings-admin"
+                            />
+                            <div style="font-weight: 250; font-size: 1.3rem;" class="text-charger-info">
+                                История сессий
+                            </div>
+                        </a>
+                        <a href="#" onclick="location.href='/preferredLocation'" class="d-flex text-decoration-none mt-3 mx-2 align-items-center">
+                            <img
+                                src="/img/admin_option/place-50.png"
+                                alt="logo-link"
+                                class="img-settings-admin"
+                            />
+                            <div style="font-weight: 250; font-size: 1.3rem;" class="text-charger-info">
+                                Предпочитаемые места
+                            </div>
+                        </a>
+                        <a href="#" onclick="location.href='/totalConsumedPwr'" class="d-flex text-decoration-none mt-3 mx-2 align-items-center">
+                            <img
+                                src="/img/admin_option/light-automation-50.png"
+                                alt="logo-link"
+                                class="img-settings-admin"
+                            />
+                            <div style="font-weight: 250; font-size: 1.3rem;" class="text-charger-info">
+                                Потребление
+                            </div>
+                        </a>
+                        <a href="#" onclick="location.href='/billingControl'" class="d-flex text-decoration-none mt-3 mx-2 align-items-center">
+                            <img
+                                src="/img/admin_option/billing-50.png"
+                                alt="logo-link"
+                                class="img-settings-admin"
+                            />
+                            <div style="font-weight: 250; font-size: 1.3rem;" class="text-charger-info">
+                                Настройка станций
+                            </div>
+                        </a>
+                        <a href="#" onclick="location.href='/payMentList'" class="d-flex text-decoration-none mt-3 mx-2 align-items-center">
+                            <img
+                                src="/img/admin_option/cash-register-50.png"
+                                alt="logo-link"
+                                class="img-settings-admin"
+                            />
+                            <div style="font-weight: 250; font-size: 1.3rem;" class="text-charger-info">
+                                История платежей
+                            </div>
+                        </a>
+                        {{/if}} 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<div class="accordion mt-2" style="margin-bottom: 120px;" id="accordionExample">
+
+
+<div class="accordion" style="margin-bottom: 120px;" id="accordionExample">
 		<div class="accordion-item">
 			<div class="accordion-header py-2" id="headingOne">
 				<button class="more-info-accordion" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -44,7 +113,7 @@
 				</button>
 			</div>
 			<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-				<div class="accordion-body">
+				<div class="accordion-body" style="max-height: 310px; overflow-y: auto;">
 					<div class="popWindow timer_info">
                         <div>
                             <p id="timer_info_text" class="commonText"></p>
