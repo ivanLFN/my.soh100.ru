@@ -29,6 +29,11 @@ body {
   overflow-y: auto;
 }
 
+.table-overflow {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
 .th-table {
   font-weight: 350 !important;
   color: #303b46;
