@@ -1,33 +1,53 @@
-<form method="post" class="form">
-    <div class="container">
-        <h1 class="commonTextTitle">Регистрация</h1>
-        
-        <hr>
-        {{!-- <p class="commonTextLittle">Заполните все поля</p> --}}
-        <label class="commonText" for="phone"><b>Номер телефона</b></label>
-        <input type="tel" placeholder="+7(___)___-____" name="phone" id="phone" required>
+<form method="post" class="form-register">
+    <div class="container"> 
+        <div class="mx-4">
+            <div style="font-weight: 250; font-size: 1.3rem;" class="text-charger-info">
+                Телефон:
+            </div>
+            <div class="input-group mb-3">
+                <input name="phone" style="padding: 8px;" type="text" class="form-control" placeholder="+7(___)___-____" aria-describedby="basic-addon1" id="phone" required>
+            </div>
 
-        <label class="commonText" for="password"><b>Пароль</b></label>
-        <input type="password" placeholder="" id="password" name="password" required>
+            <div style="font-weight: 250; font-size: 1.3rem;" class="text-charger-info mt-3">
+                Пароль:
+            </div>
+            <div class="input-group mb-3">
+                <input style="padding: 8px;" type="password" class="form-control" name="password" id="password" required>
+            </div>
 
-        <label class="commonText" for="passwordRepeat"><b>Повторите пароль</b></label>
-        <input type="password" placeholder="" id="passwordRepeat" name="passwordRepeat" required>
-        <hr>
+            <div style="font-weight: 250; font-size: 1.3rem;" class="text-charger-info mt-3">
+                Повторите пароль:
+            </div>
+            <div class="input-group mb-3">
+                <input style="padding: 8px;" type="password" class="form-control" id="passwordRepeat" name="passwordRepeat" required>
+            </div>
+
+            <div class="d-flex justify-content-end mt-4 mt-md-3">
+                <button style="" class="classical-btn" type="button" onclick="checkRegistrationParams()" id="checkButton">
+                    Получить SMS
+                </button>
+            </div>
+
+            <div style="font-weight: 250; font-size: 1.3rem;" class="text-charger-info mt-3">
+                Введите код из SMS:
+            </div>
+            <div class="input-group mb-3">
+                <input style="padding: 8px;" type="password" class="form-control" id="code" name="code" required>
+            </div>
+
+            <div class="d-flex justify-content-end mt-4 mt-md-3">
+                <button style="" class="classical-btn" disabled type="button" onclick="register()" id="registerButton">
+                    Создать аккаунт
+                </button>
+            </div>
+        </div>
+
         <div class="commonTextLittle">
         <span hidden id="smsAttampString">Вы сможете отправить код повторно через: <span hidden
                 id="smsAttampTimer"></span> сек.</span>
-        </div>     
-        <br>
-        <button class="commonButton" type="button" onclick="checkRegistrationParams()" id="checkButton">Проверить данные и отправить код
-            подтверждения</button>
-        <hr>
-        <label class="commonText" for="code"><b>Код из СМС</b></label>
-        <input disabled type="code" placeholder="" id="code" name="code" required>
-
-        {{!-- <p>Создавая аккаунт, Вы даёте согласие на обработку персональных данных и соглашаетесь с <a
-                href="#">условиями</a>.</p> --}}
-        <hr>
-        <button class="commonButton" disabled type="button" onclick="register()" id="registerButton">Создать аккаунт</button>
+        </div>
+        
+        {{!-- <button class="commonButton" disabled type="button" onclick="register()" id="registerButton">Создать аккаунт</button> --}}
     </div>
 </form>
 

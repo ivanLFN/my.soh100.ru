@@ -467,6 +467,10 @@ a.active {
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   transition: all 0.2s linear; }
 
+.hidden_admin {
+  display: none;
+}
+
 .active {
   padding: 10px;
   visibility: visible;
@@ -641,6 +645,10 @@ a {
 
 .form{
   margin-bottom: 150px;
+}
+
+.form-register {
+  margin-bottom: 110px;
 }
 
 .commonButton {
