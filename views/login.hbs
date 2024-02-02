@@ -1,17 +1,35 @@
-<form class="form">
-    <div class="container">
-        <h1 class="commonTextTitle">Авторизация</h1>
-        <hr>
+<div class="d-flex justify-content-center align-items-center text-center mt-5 mt-md-3">
+    <div class="text-logo">
+        SOH100
+    </div>
+    <div class="img-logo">
+        <img src="img/logo_small.png" alt="logo">
+    </div>
+</div>
 
-        <label for="phone" class="commonText"><b>Номер телефона</b></label>
-        <input type="tel" placeholder="+7(___)___-____" name="phone" id="phone" required>
-
-        <label for="password" class="commonText"><b>Пароль</b></label>
-        <input type="password" placeholder="" id="password" name="password" required>
-        <p class="restorePass"><a href="/resetPassword">Восстановить пароль</a></p>
-        <button class="commonButton" type="button" onclick="login()">Войти в аккаунт</button>
-        <hr>
-        <p class="restorePass"><a href="/registration">Создать аккаунт</a></p>
+<form class="form container">
+    <div class="mx-4 mt-5 mt-md-3">
+        <div style="font-weight: 250; font-size: 1.3rem;" class="text-charger-info">
+            Телефон:
+        </div>
+        <div class="input-group mb-3">
+            <input style="padding: 8px;" type="text" class="form-control" placeholder="(___)___-____" aria-label="Username" aria-describedby="basic-addon1" id="phone" required>
+        </div>
+        <div style="font-weight: 250; font-size: 1.3rem;" class="text-charger-info mt-3">
+            Пароль:
+        </div>
+        <div class="input-group mb-3">
+            <input style="padding: 8px;" type="password" class="form-control" aria-describedby="basic-addon1" id="password" required>
+        </div>
+        <div class="row mt-5 mt-md-3 d-flex justify-content-center align-items-center text-center">
+            <div class="col">
+                <a class="reg-btn" href="/registration">Регистарация</a>
+                <a class="reg-btn" href="/resetPassword">Забыли пароль?</a>
+            </div>
+            <div class="col">
+                <button class="login-btn" type="button" onclick="login()">Войти</button>
+            </div>
+        </div>
     </div>
 </form>
 

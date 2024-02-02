@@ -129,6 +129,7 @@
 				<a
 					class="option-item mt-3 mt-md-2 d-flex align-items-center"
 					href="#"
+					onclick="logout()"
 				>
 						<img
 							src="img/logout-50.png"
@@ -169,7 +170,6 @@
 						<img src="img/menu-icon.png" id="browserImage2" alt="">
 				</a>
 		</div>
-		
 	</section>
 
 	<div id="overlay"></div>
@@ -183,6 +183,17 @@
 				panelContainer.classList.toggle('panel-content-expanded');
 				overlay.style.display = panelContainer.classList.contains('panel-content-expanded') ? 'block' : 'none';
 		}
+		function logout() {
+		const options = {
+				method: 'POST'
+		}
+
+		fetch('logout', options)
+				.then(res => res.json())
+				.then(data => {
+						document.location.href = "/";
+				})
+    }
 	</script>
 
 	<script src="js/main.js"></script>
