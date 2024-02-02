@@ -24,6 +24,26 @@ body {
   background-position: center center;
 }
 
+.form-control {
+  border-radius: 30px !important;
+}
+
+.login-btn {
+  font-size: 1.3rem;
+  background-color: #094443;
+  border: 2px solid #1FC4C2;
+  color: white;
+  padding: 8px 40px;
+  border-radius: 30px;
+}
+
+.text-logo {
+  font-weight: 550;
+  font-size: 1.4rem;
+  color: #22C4C2;
+  margin: 10px 10px !important;
+}
+
 .preferred-location {
   height: 100%;
   border-radius: 35px;
@@ -109,6 +129,11 @@ body {
   border-radius: 30px;
   padding: 8px 30px;
   border-color: #2c3e51;
+}
+
+.reg-btn {
+  color: #303b46;
+  font-size: 1.1rem;
 }
 
 .classical-btn {
@@ -575,16 +600,6 @@ table.iksweb{text-decoration: none;border-collapse:collapse;width:100%;text-alig
   padding: 16px;
 }
 
-/* Full-width input fields */
-input[type=tel], input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-}
-
 input[type=text]:focus, input[type=password]:focus {
   background-color: #ddd;
   outline: none;
@@ -625,7 +640,7 @@ a {
 
 
 .form{
-  margin-bottom: 250px;
+  margin-bottom: 150px;
 }
 
 .commonButton {
