@@ -1,16 +1,18 @@
-<div style="margin-left: 30px;">
-    <div class="commonText">Выберите сумму, руб.:</div>
+<div class="mx-4" style="margin-bottom: 120px">
+    <div class="commonText mt-4">Выберите сумму, руб.:</div>
     <br>
     <form>
         {{#each paymentValues}}
         <input type="radio" id=RB_{{@index}} name="values" value={{this}} {{#unless @index }} checked {{/unless}}>
-          <label class="commonText" for=RB_{{@index}}>{{this}}</label><br>
+          <label style="font-weight: 250;" class="commonText" for=RB_{{@index}}>{{this}}</label><br>
         {{/each}}
     </form>
     <br>
 
     <p hidden id="paymentValuesArrayLength">{{ paymentValues.length }}</p>
-    <button class="commonButton" onclick="pay()" style="margin-left: 10px; margin-top: 20px;">Оплатить</button>
+    <div class="d-flex justify-content-center">
+        <button class="classical-btn" onclick="pay()">Оплатить</button>
+    </div>
 </div>
 
 
