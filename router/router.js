@@ -249,7 +249,6 @@ router.get('/profile', checkAuthenticated, async (req, res) => {
     Station.getStationsWithAccessCheck(user._id, (stations) => {
         params.stations = stations;
         res.render('profile.hbs', params);
-        console.log(stations)
     });
 });
 
