@@ -2,8 +2,8 @@ let config =
 {
     PORT: 3000, // порт для HTTP сервера
     PORT_SSL: 3443, // порт для HTTPS сервера
-    MONGO_URL: 'mongodb://user:Interguide.1@localhost:27018/soh', // URL-строка для подключения к БД на сервере
-    //MONGO_URL: 'mongodb://user:alexrimsDM24`@e-chargers.ru/evseDb', // Это удобно использовать для отладки на локальной машине,
+    // MONGO_URL: 'mongodb://user:Interguide.1@localhost:27018/soh', // URL-строка для подключения к БД на сервере
+    MONGO_URL: 'mongodb://user:alexrimsDM24`@e-chargers.ru/evseDb', // Это удобно использовать для отладки на локальной машине,
                                                                       // но с данными на рабочем сервере
     secretSessionKey: "nNTQeWMlaSbz9UgN8dAszfDkKG-hcsDddGlS3Tz49q9gCwHDaNLpFWINCHM4nN72", // Приватный ключ, которым шифруются все http-сессии
     redisStore: { host: 'localhost', port: 6379 }, // Настройки хранилища Redis
@@ -18,7 +18,7 @@ let config =
     regStationEnabled: true,                            // разрешить добавление новых станций
     maxStationTimers: 3,                                // макс. кол-во таймеров для станции
     timerStationEnabled: true,                          // разрешить запуск обрботчика таймера станций
-    mongoose_debug: true,                              // работа с БД в режиме отладки
+    mongoose_debug: false,                              // работа с БД в режиме отладки
     sessionTimeoutDays: 90,                             // время хранения http-сессии
     api_key: "8fcc9cb4-b55d-49f5-a4a1-0246c5ee57f5",    // ключ доступа к api сайта
     TerminalKey: "1632468971798",//                     // ключ для взаимодействия с TinkoffPay
