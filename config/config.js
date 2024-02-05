@@ -2,8 +2,8 @@ let config =
 {
     PORT: 3000, // порт для HTTP сервера
     PORT_SSL: 3443, // порт для HTTPS сервера
-    MONGO_URL: 'mongodb://user:Interguide.1@localhost:27018/soh', // URL-строка для подключения к БД на сервере
-    //MONGO_URL: 'mongodb://user:alexrimsDM24`@e-chargers.ru/evseDb', // Это удобно использовать для отладки на локальной машине,
+    // MONGO_URL: 'mongodb://user:Interguide.1@localhost:27018/soh', // URL-строка для подключения к БД на сервере
+    MONGO_URL: 'mongodb://user:alexrimsDM24`@e-chargers.ru/evseDb', // Это удобно использовать для отладки на локальной машине,
                                                                       // но с данными на рабочем сервере
     secretSessionKey: "nNTQeWMlaSbz9UgN8dAszfDkKG-hcsDddGlS3Tz49q9gCwHDaNLpFWINCHM4nN72", // Приватный ключ, которым шифруются все http-сессии
     redisStore: { host: 'localhost', port: 6379 }, // Настройки хранилища Redis
