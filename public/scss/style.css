@@ -24,6 +24,13 @@ body {
   background-position: center center;
 }
 
+.pyment-list-screen {
+  min-height: 629px;
+  max-height: 630px;
+  overflow-y: auto;
+  padding-bottom: 120px;
+}
+
 .station-billing {
   min-height: 629px;
   max-height: 630px;
@@ -74,6 +81,9 @@ body {
     min-height: 95vh;
   }
   .station-billing {
+    min-height: 95vh;
+  }
+  .pyment-list-screen {
     min-height: 95vh;
   }
 }
