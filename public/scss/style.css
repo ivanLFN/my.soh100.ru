@@ -146,13 +146,13 @@ body {
 }
 
 .img-settings {
-  width: 50px;
+  width: 40px;
   height: auto;
   margin-right: 15px;
 }
 
 .img-settings-admin {
-  width: 45px;
+  width: 40px;
   height: auto;
   margin-right: 10px;
 }
@@ -257,7 +257,7 @@ body {
 
 .menu-nav-link {
   width: 30%;
-  height: 100px;
+  height: 80px;
   box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.9);
   background-color: white;
 }
@@ -491,7 +491,7 @@ body {
 }
 
 .panel-content-expanded {
-  height: 700px; /* Высота раскрытой панели */
+  height: 600px; /* Высота раскрытой панели */
 }
 
 .menu-bg {
