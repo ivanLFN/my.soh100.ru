@@ -35,6 +35,13 @@ body {
   height: 630px;
 }
 
+.consumed-pwd {
+  min-height: 629px;
+  max-height: 630px;
+  overflow-y: auto;
+  padding-bottom: 120px;
+}
+
 @media (min-width: 768px) {
   .height-screen {
     min-height: 95vh;
@@ -43,6 +50,9 @@ body {
   .preferred-location-lg-screen {
     min-height: 95vh;
     max-height: none;
+  }
+  .consumed-pwd {
+    min-height: 95vh;
   }
 }
 
