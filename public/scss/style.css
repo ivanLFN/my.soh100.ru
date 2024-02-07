@@ -24,6 +24,12 @@ body {
   background-position: center center;
 }
 
+.install-header {
+  font-size: 1.4rem;
+  color: #22C4C2;
+  font-weight: 250;
+}
+
 .pyment-list-screen {
   min-height: 629px;
   max-height: 630px;
@@ -106,6 +112,16 @@ body {
   font-size: 1.4rem;
   color: #22C4C2;
   margin: 10px 10px !important;
+}
+
+.install-steps {
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 1.3rem;
+}
+
+.img-install {
+  padding-right: 20px;
 }
 
 .preferred-location {
