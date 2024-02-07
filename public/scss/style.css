@@ -31,6 +31,11 @@ body {
   padding-bottom: 120px;
 }
 
+.add-row {
+  height: 120px;
+}
+
+
 .preferred-location-lg-screen {
   height: 630px;
 }
@@ -40,6 +45,10 @@ body {
   max-height: 630px;
   overflow-y: auto;
   padding-bottom: 120px;
+}
+
+.billing-screen {
+  height: 630px;
 }
 
 @media (min-width: 768px) {
@@ -52,6 +61,9 @@ body {
     max-height: none;
   }
   .consumed-pwd {
+    min-height: 95vh;
+  }
+  .billing-screen {
     min-height: 95vh;
   }
 }
@@ -184,6 +196,17 @@ body {
   bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.billing-update-btn {
+  width: 40px;
+  height: 40px;
+  background-image: url("https://img.icons8.com/ios/50/000000/restart--v1.png");
+  background-color: white;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
 }
 
 .add-button {
