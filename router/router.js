@@ -173,6 +173,10 @@ router.get('/history', checkAuthenticated, function (req, res) {
     res.render('history.hbs');
 });
 
+router.get('/installation', function (req, res) {
+    res.render('installation.hbs');
+});
+
 // Получение зарядных сессий пользователя. Этот маршрут вызывается скриптом на странице, которую отдали в GET запросе
 router.post('/history', checkAuthenticated, function (req, res) {
     const userId = req.user.id;
