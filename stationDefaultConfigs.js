@@ -20,4 +20,4 @@ p17:	30, // sec  gsmGprsCheckTimeout
 p18:	0, //  useHTTPS	
 crc:0
 }
-module.exports.defaultConfig_A1_1 = defaultConfig_A1_1;		
+module.exports.defaultConfig_A1_1 = defaultConfig_A1_1;
