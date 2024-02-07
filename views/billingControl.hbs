@@ -1,6 +1,5 @@
-<div class="timersDiv" id="timersDiv" style="height: 630px;">
-
-    <table class="mt-4 mt-md-3 mb-5 mb-md-3 table" id="billingTable">
+<div class="billing-screen" id="timersDiv">
+    <table class="mt-4 mt-md-3 mb-5 mb-md-3 table text-center" id="billingTable">
         <thead>
             <tr>
                 <th class="th-table">Номер станции</th>
@@ -13,11 +12,10 @@
                 <th class="th-table">Обновить</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody style="padding-bottom: 10%;">
         </tbody>
     </table>
 </div>
-
 
 <script>
 
@@ -64,10 +62,24 @@
                 <td><p>${simCardPhone}</p></td>
                 <td>${onLink}</td>
                 <td>${estabState}</td>
-				<td><button class="commonButton" onclick="update(${stationNum})"></td></tr>`
+				<td><button class="billing-update-btn" onclick="update(${stationNum})"></td></tr>`
 
                     $('#billingTable').append(row);
                 }
+
+                let row_add = `<tr>
+                <td class="add-row">.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td></tr>`
+
+                $('#billingTable').append(row_add);
+
+                
             }
         })
     })
