@@ -1,20 +1,18 @@
-<div class="mobile-table" style="min-height: 629px; max-height: 630px; overflow-y: auto;">
-	<div style="width: 100%; overflow-y: auto;">
-		<table class="mt-5 mt-md-3 mb-5 mb-md-3 table" id="consumedPowerTable">
-			<thead>
-					<tr>
-						<th class="th-table text-center" scope="col">Станция</th>
-						<th class="th-table text-center" scope="col">Заряд, квт*ч</th>
-					</tr>
-			</thead>
-			<tbody>
-				{{#each data}}
+<div class="mobile-table consumed-pwd">
+	<table class="mt-5 mt-md-3 mb-5 mb-md-3 table text-center" id="consumedPowerTable">
+		<thead>
 				<tr>
-					<td>{{this.stationNum}}</td>
-					<td>{{this.cp}}</td>
+					<th class="th-table" scope="col">Станция</th>
+					<th class="th-table" scope="col">Заряд, квт*ч</th>
 				</tr>
-				{{/each}}
-			</tbody>
-		</table>
-	</div>
+		</thead>
+		<tbody>
+			{{#each data}}
+			<tr>
+				<td>{{this.stationNum}}</td>
+				<td>{{this.cp}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
 </div>
