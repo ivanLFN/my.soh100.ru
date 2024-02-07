@@ -31,8 +31,16 @@ body {
   padding-bottom: 120px;
 }
 
+.preferred-location-lg-screen {
+  height: 630px;
+}
+
 @media (min-width: 768px) {
   .height-screen {
+    min-height: 95vh;
+    max-height: none;
+  }
+  .preferred-location-lg-screen {
     min-height: 95vh;
     max-height: none;
   }
