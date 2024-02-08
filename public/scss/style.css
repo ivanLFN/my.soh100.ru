@@ -24,6 +24,34 @@ body {
   background-position: center center;
 }
 
+.back-btn {
+  position: fixed;
+  left: 0;
+  bottom: 120px;
+  z-index: 1000;
+  background-color: white;
+  border-radius: 50%;
+  border: 5px solid #37475A;
+  padding: 2px;
+  margin-left: 15px;
+}
+
+.back-img-map {
+  width: 40px;
+  height: auto;
+}
+
+.admin-header {
+  font-size: 1.5rem;
+  color: #37475A;
+}
+
+.back-img {
+  margin: 0 15px;
+  width: 40px;
+  height: auto;
+}
+
 .install-header {
   font-size: 1.4rem;
   color: #22C4C2;
