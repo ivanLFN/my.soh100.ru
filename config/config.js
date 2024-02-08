@@ -7,8 +7,8 @@ let config =
                                                                       // но с данными на рабочем сервере
     secretSessionKey: "nNTQeWMlaSbz9UgN8dAszfDkKG-hcsDddGlS3Tz49q9gCwHDaNLpFWINCHM4nN72", // Приватный ключ, которым шифруются все http-сессии
     redisStore: { host: 'localhost', port: 6379 }, // Настройки хранилища Redis
-    tcpRoutine : {host: '45.132.17.140', port: 7070}, // Настройки TCP-обработчика на сервере. localhost почему-то 
-    // tcpRoutine : {host: 'localhost', port: 7070},       // не работает на хостинге. При выгрузке на сервер раскомм-ть 1 строку
+    // tcpRoutine : {host: '45.132.17.140', port: 7070}, // Настройки TCP-обработчика на сервере. localhost почему-то 
+    tcpRoutine : {host: 'localhost', port: 7070},       // не работает на хостинге. При выгрузке на сервер раскомм-ть 1 строку
                                                         // и закомм-ть вторую
     dev: true,                                          // не используется
     sendSmsEnabled: true,                               // если необходимо заблокировать отправку СМС-сообщений, выставить false
