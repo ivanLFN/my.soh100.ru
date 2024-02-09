@@ -55,7 +55,11 @@ body {
 .install-header {
   font-size: 1.4rem;
   color: #22C4C2;
-  font-weight: 250;
+  font-weight: 350;
+}
+
+.accordion-item-home-screen {
+  border: none !important;
 }
 
 .pyment-list-screen {
@@ -183,6 +187,10 @@ body {
   width: 100%;
   border: none;
   background-color: white;
+}
+
+.border-r {
+  border-radius: 15px !important;
 }
 
 .accordion-header {
@@ -315,7 +323,7 @@ body {
   background-color: white;
   width: 100%;
   height: auto;
-  min-height: 55%;
+  min-height: 40%;
   position: fixed;
   bottom: 0;
   left: 0;

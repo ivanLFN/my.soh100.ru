@@ -1,17 +1,47 @@
-<div class="instructionText overflow-auto">
-    <div>Как пользоваться:</div>
-    <br>
-    <span>
-        1. Найдите свободную станцию на карте (ярко синий ящик, напоминающий почтовый), доберитесь к ней на электромобиле.<br>
-        2. Поднимите вверх крышку розетки и вставьте в розетку зарядное устройство (евровилку), а с другой стороны
+<div
+    class="instructionText overflow-auto"
+    style="min-height: 220px; max-height: 730px; overflow-y: auto; padding-bottom: 200px;"
+>
+    {{!-- <span>
+        1. Для начала зарядки нажмите круглую кнопку (под этой инструкцией). <br>
+        2. Выберете нужную станцию на карте (нажмите) и доберитесь до нее на электромобиле<br>
+        3. Вставьте в розетку зарядное устройство (евровилку), а с другой стороны
         подключите его к электромобилю.<br>
-        3. На сайте выберите станцию где вы находитесь, и нажмите "Начать зарядку"<br>
-        4. Индикатор на станции станет зеленым, а на экране телефона отобразится время заряда.<br>
-        5. Если вы хотите остановить зарядку, нажмите "Остановить зарядку". Статистика
+        4. Нажмите на кнопку "Начать зарядку" <br>
+        5. Индикатор на станции станет зеленым.
+        6. Если вы хотите остановить зарядку, нажмите "Остановить зарядку". Статистика
         заряда отобразится в "Истории".<br>
-        6. Вытащите вилку и закройте крышку розетки.
-    </span>
+    </span> --}}
 
+    <div class="text-center" style="font-size: 1.5rem; font-weight: 450;">Рады видеть вас снова!</div>
+    <div class="accordion mt-2" id="accordionExample">
+		<div class="accordion-item accordion-item-home-screen">
+			<div class="accordion-header" id="headingOne">
+				<button class="more-info-accordion" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					<div class="d-flex mx-2 align-items-center">
+						<img
+							src="/img/question.png"
+							alt="logo-link"
+							class="img-settings"
+						/>
+						<div class="text-charger-info">
+                            Как начать?
+						</div>
+					</div>
+				</button>
+			</div>
+			<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				<div class="accordion-body mt-3 p-0">
+					<img
+                        src="img/backgor-instr.png"
+                        alt="inst-img"
+                        class="w-100"
+                    >
+				</div>
+			</div>
+		</div>
+	</div>
+    
     <div class="start-btn d-flex justify-content-center">
         <a href="/map" class="start-link rounded-circle d-flex align-items-center justify-content-center">
             <img src="img/logo_small.png" onclick="main()" alt="Your Image" class="rounded-circle" style="width: 100px; height: 100px;">
