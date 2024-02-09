@@ -62,7 +62,7 @@
                     else
                         status = status + ' / свободна';
 
-                    const text = `<a href="station?num=${sta.stationNum}">№${sta.stationNum} <br> Europlug(3,5 kW) <br> ${status}</a>`;
+                    const text = `<a href="station?num=${sta.stationNum}"><img src="img/logo_small.png" alt="my_img" style="width: 30px; height: 30px;"> №${sta.stationNum} <br> Europlug(3,5 kW) <br> ${status}</a>`;
                     DG.marker(sta.location).addTo(map).bindPopup(text);
                 }
             });
