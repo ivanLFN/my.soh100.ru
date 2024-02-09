@@ -124,6 +124,9 @@ body {
   .pyment-list-screen {
     min-height: 95vh;
   }
+  .devise-mode {
+    width: 400px;
+  }
 }
 
 .form-control {
