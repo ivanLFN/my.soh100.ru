@@ -24,6 +24,18 @@ body {
   background-position: center center;
 }
 
+.nav-pills .nav-link.active {
+  background-color: white !important;
+  color: #262626 !important;
+  border-bottom: 2px solid #262626;
+  border-radius: 0px;
+}
+
+.nav-pills .nav-link {
+  background-color: #fff;
+  color: #262626 !important;
+}
+
 .back-btn {
   position: fixed;
   left: 0;
@@ -69,6 +81,12 @@ body {
   padding-bottom: 120px;
 }
 
+.install-scroll {
+  min-height: 679px;
+  max-height: 680px;
+  overflow-y: auto;
+}
+
 .station-billing {
   min-height: 629px;
   max-height: 630px;
@@ -103,7 +121,17 @@ body {
   height: 630px;
 }
 
+.scrollable-image {
+  padding-left: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
 @media (min-width: 768px) {
+
+  .install-scroll {
+    min-height: 95vh;
+  }
   .height-screen {
     min-height: 95vh;
     max-height: none;
@@ -127,6 +155,7 @@ body {
   .devise-mode {
     width: 400px;
   }
+
 }
 
 .form-control {

@@ -7,8 +7,8 @@ let config =
                                                                       // но с данными на рабочем сервере
     secretSessionKey: "nNTQeWMlaSbz9UgN8dAszfDkKG-hcsDddGlS3Tz49q9gCwHDaNLpFWINCHM4nN72", // Приватный ключ, которым шифруются все http-сессии
     redisStore: { host: 'localhost', port: 6379 }, // Настройки хранилища Redis
-    tcpRoutine : {host: '45.132.17.140', port: 7070}, // Настройки TCP-обработчика на сервере. localhost почему-то 
-    // tcpRoutine : {host: 'localhost', port: 7070},       // не работает на хостинге. При выгрузке на сервер раскомм-ть 1 строку
+    // tcpRoutine : {host: '45.132.17.140', port: 7070}, // Настройки TCP-обработчика на сервере. localhost почему-то 
+    tcpRoutine : {host: 'localhost', port: 7070},       // не работает на хостинге. При выгрузке на сервер раскомм-ть 1 строку
                                                         // и закомм-ть вторую
     dev: true,                                          // не используется
     sendSmsEnabled: true,                               // если необходимо заблокировать отправку СМС-сообщений, выставить false
@@ -18,7 +18,7 @@ let config =
     regStationEnabled: true,                            // разрешить добавление новых станций
     maxStationTimers: 3,                                // макс. кол-во таймеров для станции
     timerStationEnabled: true,                          // разрешить запуск обрботчика таймера станций
-    mongoose_debug: false,                              // работа с БД в режиме отладки
+    mongoose_debug: true,                              // работа с БД в режиме отладки
     sessionTimeoutDays: 90,                             // время хранения http-сессии
     api_key: "8fcc9cb4-b55d-49f5-a4a1-0246c5ee57f5",    // ключ доступа к api сайта
     TerminalKey: "1632468971798",//                     // ключ для взаимодействия с TinkoffPay
