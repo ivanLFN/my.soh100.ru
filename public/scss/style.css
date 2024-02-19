@@ -349,6 +349,7 @@ body {
 .start-link {
   box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.5);
   padding: 10px;
+  background-color: white;
 }
 
 .body-panel {
